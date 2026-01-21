@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intelligent Design Works Limited - Bespoke Innovations</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="E6AABD91-EDE9-42A5-B89E-7D67AE66686F.jpeg">
+    <link rel="apple-touch-icon" href="E6AABD91-EDE9-42A5-B89E-7D67AE66686F.jpeg">
+
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -96,6 +101,19 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-image {
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .logo-text {
             font-family: 'Syne', sans-serif;
             font-size: 1.5rem;
             font-weight: 700;
@@ -540,7 +558,10 @@
         <header>
             <div class="header-content">
                 <div class="logo">
-                    <span class="logo-accent">IDW</span>3D
+                    <img src="E6AABD91-EDE9-42A5-B89E-7D67AE66686F.jpeg" alt="IDW3D Logo" class="logo-image">
+                    <span class="logo-text">
+                        <span class="logo-accent">IDW</span>3D
+                    </span>
                 </div>
                 <nav>
                     <a href="#products">Products</a>
