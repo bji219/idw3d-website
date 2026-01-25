@@ -6,8 +6,8 @@
     <title>Intelligent Design Works Limited - Bespoke Innovations</title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/jpeg" href="E6AABD91-EDE9-42A5-B89E-7D67AE66686F.jpeg">
-    <link rel="apple-touch-icon" href="E6AABD91-EDE9-42A5-B89E-7D67AE66686F.jpeg">
+    <link rel="icon" type="image/jpeg" href="images/brand/logo.jpeg">
+    <link rel="apple-touch-icon" href="images/brand/logo.jpeg">
 
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -503,6 +503,96 @@
             font-size: 0.9rem;
         }
 
+        /* Product Image Gallery */
+        .product-gallery {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            background: var(--primary-dark);
+            border: 1px solid var(--border-color);
+        }
+
+        .gallery-container {
+            display: flex;
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+
+        .gallery-slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 217, 255, 0.2);
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            z-index: 10;
+        }
+
+        .gallery-nav:hover {
+            background: var(--accent-cyan);
+            color: var(--primary-dark);
+        }
+
+        .gallery-nav.prev {
+            left: 8px;
+        }
+
+        .gallery-nav.next {
+            right: 8px;
+        }
+
+        .gallery-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .gallery-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-dot.active {
+            background: var(--accent-cyan);
+        }
+
+        .gallery-dot:hover {
+            background: var(--accent-cyan);
+            opacity: 0.7;
+        }
+
         /* Coming Soon Badge */
         .coming-soon {
             position: relative;
@@ -558,7 +648,7 @@
         <header>
             <div class="header-content">
                 <div class="logo">
-                    <img src="E6AABD91-EDE9-42A5-B89E-7D67AE66686F.jpeg" alt="IDW3D Logo" class="logo-image">
+                    <img src="images/brand/logo.jpeg" alt="IDW3D Logo" class="logo-image">
                     <span class="logo-text">
                         <span class="logo-accent">IDW</span>3D
                     </span>
@@ -647,11 +737,25 @@
                 </div>
 
                 <div class="product-card">
+                    <div class="product-gallery" data-gallery="riser">
+                        <div class="gallery-container">
+                            <div class="gallery-slide"><img src="images/products/korg-riser/riser-1.jpeg" alt="Korg SV Riser - Product"></div>
+                            <div class="gallery-slide"><img src="images/products/korg-riser/riser-2.jpg" alt="Korg SV Riser - Front View"></div>
+                            <div class="gallery-slide"><img src="images/products/korg-riser/riser-3.jpg" alt="Korg SV Riser - Angle View"></div>
+                        </div>
+                        <button class="gallery-nav prev" aria-label="Previous image">&#8249;</button>
+                        <button class="gallery-nav next" aria-label="Next image">&#8250;</button>
+                        <div class="gallery-dots">
+                            <span class="gallery-dot active"></span>
+                            <span class="gallery-dot"></span>
+                            <span class="gallery-dot"></span>
+                        </div>
+                    </div>
                     <span class="product-tag">Stands & Risers</span>
                     <h3 class="product-name">OP-1 x Korg SV-Series Synth Riser</h3>
                     <p class="product-description">
-                        Elevate your setup with this dual-purpose riser designed for seamless 
-                        integration of your OP-1 and Korg SV-series instruments. Optimized 
+                        Elevate your setup with this dual-purpose riser designed for seamless
+                        integration of your OP-1 and Korg SV-series instruments. Optimized
                         ergonomics meet minimalist design.
                     </p>
                     <ul class="product-features">
@@ -666,10 +770,24 @@
                 </div>
 
                 <div class="product-card coming-soon">
+                    <div class="product-gallery" data-gallery="sideplates">
+                        <div class="gallery-container">
+                            <div class="gallery-slide"><img src="images/products/side-plates/side-plates-1.jpeg" alt="OP-1 Side Plates - Product"></div>
+                            <div class="gallery-slide"><img src="images/products/side-plates/side-plates-2.jpg" alt="OP-1 Side Plates - Right View"></div>
+                            <div class="gallery-slide"><img src="images/products/side-plates/side-plates-3.jpg" alt="OP-1 Side Plates - Left View"></div>
+                        </div>
+                        <button class="gallery-nav prev" aria-label="Previous image">&#8249;</button>
+                        <button class="gallery-nav next" aria-label="Next image">&#8250;</button>
+                        <div class="gallery-dots">
+                            <span class="gallery-dot active"></span>
+                            <span class="gallery-dot"></span>
+                            <span class="gallery-dot"></span>
+                        </div>
+                    </div>
                     <span class="product-tag">Customization</span>
                     <h3 class="product-name">OP-1 Retro Side Plates</h3>
                     <p class="product-description">
-                        Transform your OP-1 with custom side plates inspired by classic synth wooden endplates. 
+                        Transform your OP-1 with custom side plates inspired by classic synth wooden endplates.
                         A perfect blend of nostalgic design and modern precision engineering.
                     </p>
                     <ul class="product-features">
@@ -727,6 +845,61 @@
                 <p>&copy; 2026 Intelligent Design Works Limited. All rights reserved.</p>
             </div>
         </footer>
-    </div>
+        </div>
+
+    <script>
+        document.querySelectorAll('.product-gallery').forEach(gallery => {
+            const container = gallery.querySelector('.gallery-container');
+            const slides = gallery.querySelectorAll('.gallery-slide');
+            const dots = gallery.querySelectorAll('.gallery-dot');
+            const prevBtn = gallery.querySelector('.gallery-nav.prev');
+            const nextBtn = gallery.querySelector('.gallery-nav.next');
+            let currentIndex = 0;
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            function updateGallery() {
+                container.style.transform = `translateX(-${currentIndex * 100}%)`;
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentIndex);
+                });
+            }
+
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                updateGallery();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateGallery();
+            });
+
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', () => {
+                    currentIndex = i;
+                    updateGallery();
+                });
+            });
+
+            // Touch/swipe support
+            gallery.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            gallery.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) {
+                        currentIndex = (currentIndex + 1) % slides.length;
+                    } else {
+                        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                    }
+                    updateGallery();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
