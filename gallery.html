@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Intelligent Design Works Limited</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="images/brand/logo.jpeg">
+    <link rel="apple-touch-icon" href="images/brand/logo.jpeg">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #E7E1D5;
+            --secondary-dark: #DCD6CA;
+            --accent-cyan: #0C2030;
+            --accent-amber: #B85C38;
+            --text-primary: #0C2030;
+            --text-secondary: #3A5060;
+            --border-color: #C5BFAE;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Mono', monospace;
+            background: var(--primary-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .logo-image {
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .logo-text {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .logo-accent {
+            color: var(--accent-cyan);
+        }
+
+        nav {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-cyan);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-cyan);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Gallery Section */
+        .gallery-page {
+            padding: 4rem 0 6rem;
+            min-height: calc(100vh - 200px);
+        }
+
+        .page-header {
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .page-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .page-subtitle a {
+            color: var(--accent-amber);
+            text-decoration: none;
+        }
+
+        .page-subtitle a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .gallery-post {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #0b2030;
+        }
+
+        .gallery-post img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-post:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(11, 32, 48, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-post:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-caption {
+            color: #E7E1D5;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            text-align: center;
+            display: -webkit-box;
+            -webkit-line-clamp: 6;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .gallery-empty {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-secondary);
+        }
+
+        .gallery-empty p {
+            margin-bottom: 1rem;
+        }
+
+        .gallery-empty a {
+            color: var(--accent-amber);
+            text-decoration: none;
+        }
+
+        .gallery-empty a:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 0 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-amber);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="noise-overlay"></div>
+
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="images/brand/logo.jpeg" alt="IDW3D Logo" class="logo-image">
+                    <span class="logo-text">
+                        <span class="logo-accent">IDW</span>3D
+                    </span>
+                </a>
+                <nav>
+                    <a href="index.html#products">Products</a>
+                    <a href="index.html#quote">Quote</a>
+                    <a href="index.html#about">About</a>
+                    <a href="gallery.html">Gallery</a>
+                    <a href="index.html#contact">Contact</a>
+                </nav>
+            </div>
+        </header>
+
+        <section class="gallery-page">
+            <div class="page-header">
+                <h1 class="page-title">Workshop Gallery</h1>
+                <p class="page-subtitle">Follow along on <a href="https://www.instagram.com/idw3d" target="_blank" rel="noopener">Instagram @idw3d</a></p>
+            </div>
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Posts loaded via JavaScript -->
+            </div>
+        </section>
+
+        <footer id="contact">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Intelligent Design Works</h3>
+                    <p>Bespoke design solutions</p>
+                    <p>Engineering consulting</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Shop</h3>
+                    <a href="https://www.etsy.com/shop/idw3d/">Etsy Store</a>
+                    <a href="#">Shopify (Coming Soon)</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <a href="mailto:hello@idw3d.com">Email</a>
+                    <a href="https://www.instagram.com/idw3d?igsh=MXc2a2Nwb3AxNHp2eQ%3D%3D&utm_source=qr">Instagram</a>
+                    <a href="#">Facebook</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Intelligent Design Works Limited. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        async function loadGallery() {
+            const grid = document.getElementById('gallery-grid');
+            if (!grid) return;
+
+            try {
+                const response = await fetch('https://feeds.behold.so/5zyWVg268s8QkV3muhyL');
+                const data = await response.json();
+
+                if (!data.posts || data.posts.length === 0) {
+                    grid.innerHTML = `
+                        <div class="gallery-empty">
+                            <p>No posts yet. Check back soon for updates from the workshop!</p>
+                            <p>Follow us on <a href="https://www.instagram.com/idw3d" target="_blank" rel="noopener">Instagram @idw3d</a></p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                grid.innerHTML = data.posts.map(post => `
+                    <a href="${post.permalink}" target="_blank" rel="noopener" class="gallery-post">
+                        <img src="${post.mediaUrl}" alt="${post.caption ? post.caption.substring(0, 100) : 'Instagram post'}" loading="lazy">
+                        <div class="gallery-overlay">
+                            <p class="gallery-caption">${post.caption || ''}</p>
+                        </div>
+                    </a>
+                `).join('');
+            } catch (error) {
+                console.error('Failed to load gallery:', error);
+                grid.innerHTML = `
+                    <div class="gallery-empty">
+                        <p>Unable to load gallery. Please try again later.</p>
+                        <p>Visit us on <a href="https://www.instagram.com/idw3d" target="_blank" rel="noopener">Instagram @idw3d</a></p>
+                    </div>
+                `;
+            }
+        }
+
+        loadGallery();
+    </script>
+</body>
+</html>

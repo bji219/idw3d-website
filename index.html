@@ -151,6 +151,31 @@
         .hero {
             padding: 8rem 0 6rem;
             animation: fadeIn 1s ease-out 0.3s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-backsplash {
+            position: absolute;
+            right: -5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 500px;
+            height: 500px;
+            opacity: 0.15;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .hero-backsplash img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         @keyframes fadeIn {
@@ -440,6 +465,41 @@
             text-align: center;
         }
 
+        .about-with-photo {
+            max-width: 1000px;
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            text-align: left;
+        }
+
+        .about-photo {
+            flex: 0 0 280px;
+        }
+
+        .headshot-placeholder {
+            width: 280px;
+            height: 280px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #0b2030;
+            border: 2px solid var(--border-color);
+        }
+
+        .headshot-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-text-content {
+            flex: 1;
+        }
+
+        .about-text-content .section-header {
+            justify-content: flex-start;
+        }
+
         .about-text {
             font-size: 1.1rem;
             line-height: 1.9;
@@ -582,6 +642,93 @@
             transform: rotate(15deg);
         }
 
+        /* Instagram Feed Section */
+        .instagram-feed {
+            padding: 6rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .instagram-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .instagram-post {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #0b2030;
+        }
+
+        .instagram-post img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .instagram-post:hover img {
+            transform: scale(1.05);
+        }
+
+        .instagram-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(11, 32, 48, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .instagram-post:hover .instagram-overlay {
+            opacity: 1;
+        }
+
+        .instagram-caption {
+            color: #E7E1D5;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            text-align: center;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .instagram-empty {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+        }
+
+        .instagram-empty a {
+            color: var(--accent-amber);
+            text-decoration: none;
+        }
+
+        .instagram-empty a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .section-link {
+            font-size: 0.9rem;
+            color: var(--accent-amber);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .section-link:hover {
+            color: var(--accent-cyan);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             nav {
@@ -607,6 +754,37 @@
                 align-items: flex-start;
                 gap: 0.5rem;
             }
+
+            .instagram-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-with-photo {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .about-photo {
+                flex: 0 0 auto;
+            }
+
+            .headshot-placeholder {
+                width: 200px;
+                height: 200px;
+                margin: 0 auto;
+            }
+
+            .about-text-content .section-header {
+                justify-content: center;
+            }
+
+            .hero-backsplash {
+                width: 300px;
+                height: 300px;
+                right: -15%;
+                opacity: 0.1;
+            }
         }
     </style>
 </head>
@@ -627,21 +805,28 @@
                     <a href="#products">Products</a>
                     <a href="#quote">Quote</a>
                     <a href="#about">About</a>
+                    <a href="gallery.html">Gallery</a>
                     <a href="#contact">Contact</a>
                 </nav>
             </div>
         </header>
 
         <section class="hero">
-            <h1 class="hero-title">
-                Precision-Engineered<br>
-                Solutions for<br>
-                Audio Enthusiasts
-            </h1>
-            <p class="hero-subtitle">
-                Custom solutions to unique problems - where intelligent design meets functional artistry.
-            </p>
-            <a href="#products" class="cta-button">Explore Innovations</a>
+            <div class="hero-backsplash">
+                <!-- Replace src with your large logo image -->
+                <img src="images/brand/logo-large.png" alt="">
+            </div>
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Precision-Engineered<br>
+                    Solutions for<br>
+                    Audio Enthusiasts
+                </h1>
+                <p class="hero-subtitle">
+                    Custom solutions to unique problems - where intelligent design meets functional artistry.
+                </p>
+                <a href="#products" class="cta-button">Explore Innovations</a>
+            </div>
         </section>
 
         <section id="products" class="products">
@@ -794,21 +979,40 @@
         </section>
 
         <section id="about" class="about">
-            <div class="about-content">
-                <div class="section-header" style="border: none; margin-bottom: 2rem;">
-                    <h2 class="section-title">The Workshop</h2>
+            <div class="about-content about-with-photo">
+                <div class="about-photo">
+                    <div class="headshot-placeholder">
+                        <!-- Replace src with your headshot image -->
+                        <img src="images/brand/headshot.jpg" alt="Brendan - Founder of IDW3D">
+                    </div>
                 </div>
-                <p class="about-text">
-                    <span class="highlight">Intelligent Design Works Limited</span> was founded on a simple principle: 
-                    every idea no matter how big or small deserves an intelligently designed solution. 
-                    Each piece we create combines precision engineering with aesthetic consideration, 
-                    resulting in products that enhance both form and function.
-                </p>
-                <p class="about-text">
-                    Currently available through our <a href="https://www.etsy.com/shop/idw3d/" class="highlight" style="text-decoration: none;">Etsy shop</a>, with plans to expand 
-                    to a dedicated Shopify storefront. Every product is carefully crafted, tested, and refined 
-                    to meet our exacting standards.
-                </p>
+                <div class="about-text-content">
+                    <div class="section-header" style="border: none; margin-bottom: 2rem;">
+                        <h2 class="section-title">Meet Brendan</h2>
+                    </div>
+                    <p class="about-text">
+                        I founded <span class="highlight">Intelligent Design Works</span> based on a simple principle:
+                        every problem no matter how big or small deserves a thoughtful solution. We approach every
+                        challenge by combining precision engineering and aesthetic design, resulting in products that
+                        enhance both form and function. I enjoy bringing my experience in medical device design to
+                        passion projects big and small. Please drop us a line if you'd like to learn more!
+                    </p>
+                    <p class="about-text">
+                        Currently available through our <a href="https://www.etsy.com/shop/idw3d/" class="highlight" style="text-decoration: none;">Etsy shop</a>, with plans to expand
+                        to a dedicated Shopify storefront. Every product is carefully crafted, tested, and refined
+                        to meet our exacting standards.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="instagram" class="instagram-feed">
+            <div class="section-header">
+                <h2 class="section-title">Latest from the Workshop</h2>
+                <a href="gallery.html" class="section-link">See All →</a>
+            </div>
+            <div class="instagram-grid" id="instagram-grid">
+                <!-- Posts loaded via JavaScript -->
             </div>
         </section>
 
@@ -887,6 +1091,45 @@
                 }
             });
         });
+
+        // Instagram Feed
+        async function loadInstagramFeed(limit = 4) {
+            const grid = document.getElementById('instagram-grid');
+            if (!grid) return;
+
+            try {
+                const response = await fetch('https://feeds.behold.so/5zyWVg268s8QkV3muhyL');
+                const data = await response.json();
+
+                if (!data.posts || data.posts.length === 0) {
+                    grid.innerHTML = `
+                        <div class="instagram-empty">
+                            <p>Follow our journey on <a href="https://www.instagram.com/idw3d" target="_blank" rel="noopener">Instagram @idw3d</a></p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                const posts = data.posts.slice(0, limit);
+                grid.innerHTML = posts.map(post => `
+                    <a href="${post.permalink}" target="_blank" rel="noopener" class="instagram-post">
+                        <img src="${post.mediaUrl}" alt="${post.caption ? post.caption.substring(0, 100) : 'Instagram post'}" loading="lazy">
+                        <div class="instagram-overlay">
+                            <p class="instagram-caption">${post.caption || ''}</p>
+                        </div>
+                    </a>
+                `).join('');
+            } catch (error) {
+                console.error('Failed to load Instagram feed:', error);
+                grid.innerHTML = `
+                    <div class="instagram-empty">
+                        <p>Follow our journey on <a href="https://www.instagram.com/idw3d" target="_blank" rel="noopener">Instagram @idw3d</a></p>
+                    </div>
+                `;
+            }
+        }
+
+        loadInstagramFeed(4);
     </script>
 </body>
 </html>
