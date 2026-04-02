@@ -39,3 +39,4 @@ Configured in `netlify.toml`:
 - Product cards follow a consistent structure: tag, name, description, features list, and link
 - Color scheme: dark background (#0a0e12), cyan accent (#00d9ff), amber accent (#ffb800)
 - "Coming Soon" products use the `.coming-soon` class for badge styling
+- Product images must be JPEG or WebP — HEIC files (from iPhone) are not supported by most browsers and must be converted first (use `sips -s format jpeg <file>.HEIC --out <file>.jpg` on macOS)
