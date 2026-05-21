@@ -902,6 +902,41 @@
 
                 <div class="product-card">
                     <span class="product-tag">OP-1 Field</span>
+                    <h3 class="product-name">OP-1 Field Volume Knobs</h3>
+                    <div class="product-gallery" data-gallery="volknob">
+                        <div class="gallery-container">
+                            <div class="gallery-slide"><img src="images/products/vol-knob/vol-1.jpg" alt="OP-1 Field Volume Knob"></div>
+                            <div class="gallery-slide"><img src="images/products/vol-knob/vol-2.jpg" alt="OP-1 Field Volume Knob - View 2"></div>
+                            <div class="gallery-slide"><img src="images/products/vol-knob/vol-3.jpg" alt="OP-1 Field Volume Knob - View 3"></div>
+                            <div class="gallery-slide"><img src="images/products/vol-knob/vol-4.jpg" alt="OP-1 Field Volume Knob - View 4"></div>
+                        </div>
+                        <div class="gallery-dots">
+                            <span class="gallery-dot active"></span>
+                            <span class="gallery-dot"></span>
+                            <span class="gallery-dot"></span>
+                            <span class="gallery-dot"></span>
+                        </div>
+                    </div>
+                    <p class="product-description">
+                        Replace your OP-1 Field's factory volume knob with something that speaks to your style.
+                        Choose from a retro analog aesthetic that matches our other accessories, or go full custom
+                        with your own color combination.
+                    </p>
+                    <ul class="product-features">
+                        <li><strong>Two versions available:</strong></li>
+                        <li>Retro — vintage look to complement our other OP-1 Field accessories</li>
+                        <li>Custom Color — mix and match filament colors to personalize your setup</li>
+                        <li>Precision fit to the OP-1 Field volume encoder</li>
+                        <li>Drop-in replacement, no tools required</li>
+                        <li>3D printed from durable PLA filament</li>
+                    </ul>
+                    <a href="https://www.etsy.com/shop/idw3d/" class="product-link">
+                        View on Etsy →
+                    </a>
+                </div>
+
+                <div class="product-card">
+                    <span class="product-tag">OP-1 Field</span>
                     <h3 class="product-name">Automation Gear Knobs for OP-1 Field</h3>
                     <div class="product-gallery" data-gallery="gears">
                         <div class="gallery-container">
@@ -1188,7 +1223,7 @@
                 const posts = data.posts.slice(0, limit);
                 grid.innerHTML = posts.map(post => `
                     <a href="${post.permalink}" target="_blank" rel="noopener" class="instagram-post">
-                        <img src="${post.mediaUrl}" alt="${post.caption ? post.caption.substring(0, 100) : 'Instagram post'}" loading="lazy">
+                        <img src="${post.sizes?.medium?.mediaUrl || post.thumbnailUrl || post.mediaUrl}" alt="${post.caption ? post.caption.substring(0, 100) : 'Instagram post'}" loading="lazy">
                         <div class="instagram-overlay">
                             <p class="instagram-caption">${post.caption || ''}</p>
                         </div>
